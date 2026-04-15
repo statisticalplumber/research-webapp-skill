@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans text-stone-900 bg-white antialiased;
+  }
+}
+
+@layer components {
+  .section-heading {
+    @apply text-3xl md:text-4xl font-serif font-semibold text-stone-900 mb-6;
+  }
+  
+  .section-subheading {
+    @apply text-xl text-stone-600 mb-4;
+  }
+  
+  .section-content {
+    @apply text-lg leading-relaxed text-stone-700 max-w-4xl;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6 border border-stone-200;
+  }
+  
+  .stat-card {
+    @apply bg-gradient-to-br from-white to-stone-50 rounded-xl p-6 shadow-md border border-stone-200;
+  }
+  
+  .highlight {
+    @apply bg-gradient-to-r from-elisa-light to-white;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-elisa-blue via-elisa-teal to-elisa-green bg-clip-text text-transparent;
+  }
+  
+  .drop-cap::first-letter {
+    @apply text-5xl font-serif font-bold text-elisa-blue float-left mr-3 mt-[-2px];
+  }
+}

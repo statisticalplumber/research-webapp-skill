@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Lie Structures for Semisimple Lie Algebras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="logo">🔬</span>
+            <span>Pre-Lie Research Explorer</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#afas">Anti-Flexible Algebras</a></li>
+            <li><a href="#calculator">Calculator</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#comparison">Comparison</a></li>
+            <li><a href="#theorems">Theorems</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Pre-Lie Structures for Semisimple Lie Algebras</h1>
+            <p class="subtitle">Exploring Nonassociative Lie-Admissible Algebras</p>
+            <p class="authors">Xerxes D. Arsiwalla • Fernando Olivie Méndez Méndez</p>
+            <p class="tagline">
+                Interactively explore Anti-Flexible Algebras (AFAs), A₃-associative algebras, 
+                and S₃-associative algebras
+            </p>
+        </div>
+        <div class="hero-visual">
+            <canvas id="heroCanvas"></canvas>
+        </div>
+    </header>
+
+    <section id="overview" class="section">
+        <div class="container">
+            <h2>Overview</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">📐</div>
+                    <h3>Lie-Admissible Algebras</h3>
+                    <p>Nonassociative algebras where the commutator bracket satisfies the Jacobi identity, serving as precursors to Lie algebras.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔄</div>
+                    <h3>Pre-Lie Structures</h3>
+                    <p>Algebras with bilinear products where the commutator defines a Lie algebra. Closely related to affine structures on manifolds.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔗</div>
+                    <h3>Geometric Connection</h3>
+                    <p>These structures correspond to rich geometric objects on manifolds, extending flat torsion-free affine connections.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="afas" class="section alternate">
+        <div class="container">
+            <h2>Anti-Flexible Algebras (AFAs)</h2>
+            <div class="two-column">
+                <div class="content">
+                    <p><strong>Definition:</strong> An AFA is an algebra (𝒜, ⋅) where the associator satisfies:</p>
+                    <div class="math-display">
+                        <span class="math">(x, y, z) = (z, y, x)</span>
+                        <span class="math">for all x, y, z ∈ 𝒜</span>
+                    </div>
+                    <p>This condition makes AFAs their own opposite algebras and geometrically richer than LSAs or RSAs.</p>
+                    
+                    <div class="math-display">
+                        <span class="math">[(x, y, z) = (x⋅y)⋅z − x⋅(y⋅z)]</span>
+                    </div>
+                    
+                    <div class="key-facts">
+                        <h4>Key Properties:</h4>
+                        <ul>
+                            <li>✅ Self-opposite algebra (swapping products preserves the structure)</li>
+                            <li>✅ Always Lie-admissible (commutator satisfies Jacobi identity)</li>
+                            <li>✅ Neither commutative nor anticommutative</li>
+                            <li>✅ Semisimple Lie algebras CAN admit AFAs (counterexample: 𝔰𝔩(2,ℂ))</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="visual-box">
+                    <canvas id="afaCanvas"></canvas>
+                    <p class="legend">Visualization: AFA associator symmetry</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="section">
+        <div class="container">
+            <h2>AFA Calculator</h2>
+            <p>Test whether a bilinear product defines an Anti-Flexible Algebra</p>
+            
+            <div class="calculator-panel">
+                <div class="form-group">
+                    <label>Dimension</label>
+                    <input type="range" id="dimension" min="2" max="4" value="3" oninput="updateDimension()">
+                    <span id="dimensionValue">3</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>Product Matrix (3×3)</label>
+                    <div class="matrix-input" id="matrixContainer"></div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-primary" onclick="calculateAFA()">Calculate</button>
+                    <button class="btn btn-secondary" onclick="loadExample1()">Load Example 1</button>
+                    <button class="btn btn-secondary" onclick="loadExample2()">Load Example 2</button>
+                </div>
+                
+                <div class="results" id="results">
+                    <h3>Results</h3>
+                    <div id="resultContent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples" class="section alternate">
+        <div class="container">
+            <h2>Examples from the Paper</h2>
+            
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="example-header">
+                        <span class="example-number">Ex 2.1</span>
+                        <span class="example-type">3D Solvable Lie Algebra</span>
+                    </div>
+                    <div class="example-content">
+                        <p><strong>Generators:</strong> e₁, e₂, e₃</p>
+                        <p><strong>Product:</strong></p>
+                        <ul>
+                            <li>e₁⋅e₁ = e₁, e₂⋅e₂ = λ₂e₂, e₃⋅e₃ = λ₃e₃</li>
+                            <li>e₁⋅e₂ = e₂, e₁⋅e₃ = e₃</li>
+                        </ul>
+                        <p><strong>Associated Lie Bracket:</strong></p>
+                        <ul>
+                            <li>[e₁, e₂] = e₂, [e₁, e₃] = e₃</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-header">
+                        <span class="example-number">Ex 5.1</span>
+                        <span class="example-type">𝔰𝔩(2,ℂ) Counterexample</span>
+                    </div>
+                    <div class="example-content">
+                        <p><strong>Grading:</strong> 𝔤 = 𝔤₋₁ ⊕ 𝔤₀ ⊕ 𝔤₁</p>
+                        <p><strong>Generators:</strong> H, E, F</p>
+                        <p><strong>Product (partial):</strong></p>
+                        <ul>
+                            <li>E⋅F = H - 2F</li>
+                            <li>F⋅H = 2F</li>
+                            <li>H⋅E = 2E</li>
+                            <li>E⋅E = 0, F⋅F = 0, E⋅H = 0</li>
+                        </ul>
+                        <p><strong>Associated Lie Bracket:</strong></p>
+                        <ul>
+                            <li>[H, E] = 2E, [H, F] = -2F, [E, F] = H</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="example-card">
+                    <div class="example-header">
+                        <span class="example-number">Ex 4.1</span>
+                        <span class="example-type">A₃-Associative (Quandle)</span>
+                    </div>
+                    <div class="example-content">
+                        <p><strong>Product:</strong></p>
+                        <ul>
+                            <li>e₁⋅e₁ = e₁, e₂⋅e₂ = e₂, e₃⋅e₃ = e₃</li>
+                            <li>e₁⋅e₂ = e₃, e₂⋅e₃ = e₁, e₃⋅e₁ = e₂</li>
+                            <li>e₂⋅e₁ = e₃, e₃⋅e₂ = e₁, e₁⋅e₃ = e₂</li>
+                        </ul>
+                        <p><strong>Properties:</strong></p>
+                        <ul>
+                            <li>Commutative and nonassociative</li>
+                            <li>Diagonal dihedral quandle of order 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="section">
+        <div class="container">
+            <h2>Comparison of Pre-Lie Structure Types</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Associative</th>
+                            <th>LSA</th>
+                            <th>AFA</th>
+                            <th>A₃-Associative</th>
+                            <th>S₃-Associative</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Associator Condition</td>
+                            <td>(x,y,z) = 0</td>
+                            <td>(x,y,z) = (y,x,z)</td>
+                            <td>(x,y,z) = (z,y,x)</td>
+                            <td>(x,y,z)+(y,z,x)+(z,x,y) = 0</td>
+                            <td>∑ sgn(σ)(xσ(1),xσ(2),xσ(3)) = 0</td>
+                        </tr>
+                        <tr>
+                            <td>Self-Opposite?</td>
+                            <td>Yes</td>
+                            <td>No</td>
+                            <td><strong>Yes</strong></td>
+                            <td>No</td>
+                            <td><strong>Yes</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Admissible by 𝔰𝔩(2,ℂ)?</td>
+                            <td>Yes</td>
+                            <td><strong>No</strong></td>
+                            <td><strong>Yes</strong></td>
+                            <td>Yes</td>
+                            <td><strong>Yes (Universal)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Geometric Interpretation</td>
+                            <td>Flat connection</td>
+                            <td>Flat torsion-free</td>
+                            <td>Richer affine structure</td>
+                            <td>Bianchi identity</td>
+                            <td>Universal pre-Lie</td>
+                        </tr>
+                        <tr>
+                            <td>Commutative/Anticommutative?</td>
+                            <td>Either</td>
+                            <td>Neither</td>
+                            <td>Neither</td>
+                            <td>Either</td>
+                            <td>Neither</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="theorems" class="section alternate">
+        <div class="container">
+            <h2>Key Theorems</h2>
+            
+            <div class="theorem-card">
+                <div class="theorem-number">Theorem 5.1</div>
+                <div class="theorem-statement">
+                    <p><strong>S₃-associative algebras realize universal pre-Lie structures for all Lie algebras over ℂ.</strong></p>
+                </div>
+                <div class="theorem-proof">
+                    <p><strong>Proof:</strong> Given a Lie algebra, any pre-algebraic structure satisfying the definition has an associator where the signed sum over S₃ equals the Jacobinator J(x₁,x₂,x₃). For Lie algebras, J = 0, which satisfies the S₃-associative condition.</p>
+                </div>
+            </div>
+            
+            <div class="theorem-card">
+                <div class="theorem-number">Proposition 2.2</div>
+                <div class="theorem-statement">
+                    <p><strong>Let (𝒜, ⋅) be an algebra. If 𝒜 satisfies any two of: LSA, RSA, or AFA, then it also satisfies the third.</strong></p>
+                </div>
+                <div class="theorem-proof">
+                    <p><strong>Proof:</strong> Follows from the Akivis identity. If the identity holds for two transpositions τ₁, τ₂, then the remaining conditions follow from the vanishing of the sum.</p>
+                </div>
+            </div>
+            
+            <div class="theorem-card">
+                <div class="theorem-number">Corollary</div>
+                <div class="theorem-statement">
+                    <p><strong>Semisimple Lie algebras over ℂ admit multiple pre-Lie structures: associative algebras, AFAs, A₃-associative, and S₃-associative algebras. The only ones excluded are LSAs and RSAs (for n ≥ 3).</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Interactive Visualization</h2>
+            <div class="visual-container">
+                <canvas id="mainCanvas"></canvas>
+                <div class="controls">
+                    <div class="control-group">
+                        <label>Algebra Type</label>
+                        <select id="algebraType" onchange="updateVisualization()">
+                            <option value="LSA">Left-Symmetric Algebra (LSA)</option>
+                            <option value="AFA">Anti-Flexible Algebra (AFA)</option>
+                            <option value="A3">A₃-Associative</option>
+                            <option value="S3">S₃-Associative</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Dimension</label>
+                        <select id="visDimension">
+                            <option value="2">2D</option>
+                            <option value="3" selected>3D</option>
+                            <option value="4">4D</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Mode</label>
+                        <select id="visMode" onchange="updateVisualization()">
+                            <option value="associator">Associator Visualization</option>
+                            <option value="structure">Structure Diagram</option>
+                            <option value="comparison">Comparison</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section alternate">
+        <div class="container">
+            <h2>Mathematical Definitions</h2>
+            <div class="math-sections">
+                <div class="math-section">
+                    <h3>The Associator</h3>
+                    <div class="math-display">
+                        <span class="math">(x, y, z) = (x⋅y)⋅z − x⋅(y⋅z)</span>
+                    </div>
+                    <p>The associator measures the failure of associativity. For Lie-admissible algebras, this is generally non-vanishing but satisfies specific symmetry conditions.</p>
+                </div>
+                
+                <div class="math-section">
+                    <h3>The Akivis Identity</h3>
+                    <div class="math-display">
+                        <span class="math">[x₁,[x₂,x₃]] + [x₂,[x₃,x₁]] + [x₃,[x₁,x₂]] = ∑_{σ∈S₃} sgn(σ)(xσ(1),xσ(2),xσ(3))</span>
+                    </div>
+                    <p>This identity connects the Jacobi identity to the associator. The vanishing of the right-hand side for Lie algebras is equivalent to this being a Lie algebra.</p>
+                </div>
+                
+                <div class="math-section">
+                    <h3>The Commutator</h3>
+                    <div class="math-display">
+                        <span class="math">[x, y] = x⋅y − y⋅x</span>
+                    </div>
+                    <p>For a pre-Lie structure to be Lie-admissible, this commutator must define a Lie algebra structure (i.e., satisfy the Jacobi identity).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Pre-Lie Structures for Semisimple Lie Algebras</p>
+            <p>Xerxes D. Arsiwalla (Wolfram Institute) • Fernando Olivie Méndez Méndez (University of Leeds)</p>
+            <p>Research Explorer • Built for educational purposes</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

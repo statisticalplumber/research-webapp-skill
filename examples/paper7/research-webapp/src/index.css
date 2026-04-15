@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.academic-gold {
+  color: #C5A059;
+}
+
+.academic-bg-gold {
+  background-color: #C5A059;
+}
+
+.academic-border-gold {
+  border-color: #C5A059;
+}
+
+.card {
+  background-color: rgba(41, 37, 36, 0.5);
+  backdrop-filter: blur(4px);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #C5A059 0%, #E8D5B7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.scroll-section {
+  scroll-margin-top: 80px;
+}

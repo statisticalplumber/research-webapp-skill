@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --bio-green-light: #E8F5E9;
+  --bio-green: #4CAF50;
+  --bio-green-dark: #2E7D32;
+  --bio-blue-light: #E3F2FD;
+  --bio-blue: #2196F3;
+  --bio-blue-dark: #1565C0;
+  --bio-gray-light: #F5F5F5;
+  --bio-gray: #9E9E9E;
+  --bio-gray-dark: #424242;
+  --bio-text: #263238;
+  --bio-accent: #FF7043;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--bio-text);
+  background-color: var(--bio-gray-light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Georgia', serif;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--bio-gray-dark);
+}
+
+p {
+  font-family: 'Georgia', serif;
+  line-height: 1.8;
+  color: var(--bio-gray-dark);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--bio-green-dark), var(--bio-blue-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

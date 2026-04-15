@@ -1,0 +1,3 @@
+# GIF images (except showcase)
+media/gif/*.gif
+!media/showcase.gif
