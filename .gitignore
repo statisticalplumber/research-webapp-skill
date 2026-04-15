@@ -1,3 +1,4 @@
 # GIF images (except showcase)
 media/gif/*.gif
 !media/showcase.gif
+media/gif_gallery.html 
